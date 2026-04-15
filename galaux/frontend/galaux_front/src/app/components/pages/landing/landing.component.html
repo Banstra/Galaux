@@ -1,1 +1,133 @@
+<div class="landing-wrapper">
+  <!-- Hero блок -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Galaux</h1>
+      <p class="slogan">Играй безопасно и общайся с теми, кто тебя понимает</p>
+      <div class="hero-buttons">
+        <button pButton label="Регистрация" class="p-button-primary" (click)="register()"></button>
+        <button pButton label="Начать играть" class="p-button-success" (click)="playNow()"></button>
+      </div>
+    </div>
+  </section>
 
+  <!-- Блок скачивания лаунчера -->
+  <section class="download">
+    <h2>Начать играть</h2>
+    <p>скачай лаунчер, чтобы начать играть!</p>
+    <div class="download-buttons-wrapper">
+      <div class="download-buttons">
+        <button class="p-button-lg download-btn" (click)="downloadLauncher('pc')">
+          <div class="btn-icon">
+            <svg
+              width="100"
+              height="100"
+              viewBox="0 0 100 100"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              xmlns:xlink="http://www.w3.org/1999/xlink"
+            >
+              <rect width="100" height="100" fill="url(#pattern0_213_709)" />
+              <defs>
+                <pattern
+                  id="pattern0_213_709"
+                  patternContentUnits="objectBoundingBox"
+                  width="1"
+                  height="1"
+                >
+                  <use xlink:href="#image0_213_709" transform="scale(0.01)" />
+                </pattern>
+                <image
+                  id="image0_213_709"
+                  width="100"
+                  height="100"
+                  preserveAspectRatio="none"
+                  xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAYAAABw4pVUAAAACXBIWXMAAAsTAAALEwEAmpwYAAADc0lEQVR4nO3dTYhNYRzH8bNApGbhJSmvkaFkxYoNKVFmLEg2YhY2ykJTtvYapCzsJBIbZMNGSmLKS5SXlJAieS1vyctXx1xcM3Of5xx3zuM31+9TZznPPf2/486955w8WWZmZmZm9v8AxgErgHVDeCwH2gq+/swhfm2VYzWwCJhcJsY24D3VeANsLHAOXbS+e8Cu/JcvNIi8YtW+Acsc5JdPwB5g7GCDuE0a5x1kgOvAtP6D+EwaTx1kUI+ASfWDSOW5gzR0ERjpIFq2OoiWZz/+yAsFaQe2tOjRU/v4H7NWJkirA6YCNyIzOuQgCQELgC+BGd10kMSA3sCMXjhIYsCpwIy+OUhiwMnQkBwkMQcR4yBiHESMg4hxEDEOIsZBxDiIGAcR4yBiHESMg4hxEDEOIsZBxDiIGAcR4yBiHESMg4hxEDEOIsZBxDiIGAcR4yBiHESMg4hxEDEOIsZBxDiIGAcR4yBiHESMg4hxEDEOIsZBxDiIGOB0aEgOkhhwJzQkB0kI6IgNyUESAVbl/9vPsAkCLAYOtOBxELhcdEhKQboSnossBxHjIGIcRMtHB9Fy30G0nCsb5BqwD9gJ7C+5s4KDxO0oGuRW/j2hwSDzXXkeFFjDQeJ7rLQXCdIb27YImAjcjazjIGHHfg4i5B0wJTTIuoHOj+xF4iCNfQBmFwmyp0iMuqEeCazlII3fqjbUDyJkackg6wNrOchAX4Hu/oMImVEyyMLAWg7yp9dA52CDCGkvGWRJYC0H6ZNvT7gbGN9oECHrSgbZ2kSQDuBK4Mh/o6ryMPLazRwX8k9QtU1dOoExsSGGnCoZ5FJVN6iIPBzQpK5MRYGTXVFwnY2RdRykiAIn+6rRt/S6NVbWPkuHOEgRJbYK7em/h2ttI68DkW18hirICaqzKVPxFyf/GLgKPCn5c80G2Ut1Sn3fqhTpNBtkbn4Dp4Lzyq9gj8hUMIweA6JvZ+si+wEWdROYkylhmD2XBUzK3/PzewdNHN3AGmBUpma4BWl5DiLGQcSoBQFm1S6+Hf+Hx1FgOzC6+gLCQeh7IDm/S6kif5ZgQpoSv4eQSuxqb1ttT3E1h//XIJ1oyi8bjUwZJHZRcKg8ipzHZnSle9sCzir80xe/YzghZZB5tduKVXoZe5zIQQZGOVPB29fb2mXz6VmEg2Q/fAeI/D6b0pTlzAAAAABJRU5ErkJggg=="
+                />
+              </defs>
+            </svg>
+          </div>
+          <span>Скачать на компьютер</span>
+        </button>
+        <button class="p-button-lg download-btn" (click)="downloadLauncher('mobile')">
+          <div class="btn-icon">
+            <svg
+              width="100"
+              height="100"
+              viewBox="0 0 100 100"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              xmlns:xlink="http://www.w3.org/1999/xlink"
+            >
+              <rect width="100" height="100" fill="url(#pattern0_213_1096)" />
+              <defs>
+                <pattern
+                  id="pattern0_213_1096"
+                  patternContentUnits="objectBoundingBox"
+                  width="1"
+                  height="1"
+                >
+                  <use xlink:href="#image0_213_1096" transform="scale(0.01)" />
+                </pattern>
+                <image
+                  id="image0_213_1096"
+                  width="100"
+                  height="100"
+                  preserveAspectRatio="none"
+                  xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAYAAABw4pVUAAAACXBIWXMAAAsTAAALEwEAmpwYAAAB5klEQVR4nO3Wv20UURRG8efE4ZJTgU0rkLoKZIe2cQtQAngl/CfYCkyAe2AR1AApxN6DLE1AsDPZ2N99e37Sje+Mjmbea02StA3wCngHLIFV+CyHZz1svQFeALfAhno2wA2waB3F+E596y6iDF9GL65aB2dGxd/UmE3pMwW4oD/nrarhptKbT62q4frYm1WryiBhDFIryFH47FaQFo5xBnkOBgmDQbIYJAwGyWKQMBgki0HCYJAsBgmDQbIYJAwGyWKQMBgki0HCYJAsBgmDQbIYJAwGyWKQMBgki0HCYJAsBgmDQbIYJAwGyWKQMBgki0HCYJAsBgmDQbIYJAwGyWKQMBgki0HCYJAsBgmDQbIYJAwGyWKQMBgki0HCYJAsBgmDQbIYJAwGyWKQMBgki0HCYJAsBgmDQbIYJAwGyWKQMBgki0HCYJAsOxeksFWryiBhDLKbQb4CJ8PcP8E+g0x4D+z9t28P+MC8DDLiF7C/Zec+8Jv5GGTE3cTeL8zHICN+TOz9yXwMMuH1lp1vmJdBJvwB3gIvhzkG/jKv0kEu6c/HVhVwQX/OW1XAIbChHw/AQasMuKEfn1t1wAJYU9+3x3dpPRiiXBf9fT08fhndxNhyppwBy+FKnDxL4LT8mSFJbTb/AHJ1haivhX+qAAAAAElFTkSuQmCC"
+                />
+              </defs>
+            </svg>
+          </div>
+          <span>Скачать на телефон</span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Блок "Найти сервера" -->
+  <section class="servers-section">
+    <h2>Найти сервера</h2>
+    <p>Найди подходящий для себя мир!</p>
+
+    <div class="show-more" *ngIf="visibleCount < servers.length">
+      <button pButton label="Показать еще" class="p-button-outlined" (click)="showMore()"></button>
+    </div>
+  </section>
+
+  <!-- Блок безопасности -->
+  <section class="safety">
+    <h2>Безопасность</h2>
+    <div class="safety-sections">
+      <div *ngFor="let section of safetySections" class="safety-section">
+        <!-- Вариант: карточки слева, картинка справа -->
+        <div *ngIf="section.layout === 'cards-left'" class="safety-row cards-left">
+          <div class="safety-cards">
+            <div *ngFor="let card of section.cards" class="safety-card">
+              <h3>{{ card.title }}</h3>
+              <p>{{ card.description }}</p>
+              <span class="card-extra">{{ card.extra }}</span>
+            </div>
+          </div>
+          <div class="safety-image">
+            <img [src]="section.imageUrl" alt="Безопасность" />
+          </div>
+        </div>
+
+        <!-- Вариант: картинка слева, карточки справа -->
+        <div *ngIf="section.layout === 'image-left'" class="safety-row image-left">
+          <div class="safety-image">
+            <img [src]="section.imageUrl" alt="Безопасность" />
+          </div>
+          <div class="safety-cards">
+            <div *ngFor="let card of section.cards" class="safety-card">
+              <h3>{{ card.title }}</h3>
+              <p>{{ card.description }}</p>
+              <span class="card-extra">{{ card.extra }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
