@@ -1,59 +1,101 @@
-# GalauxFront
+# Galaux — Frontend
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.2.7.
+Angular-приложение для платформы Galaux. Работает в связке с Laravel-бэкендом.
 
-## Development server
+## Требования
 
-To start a local development server, run:
+- Node.js >= 20
+- npm >= 10
+- Angular CLI >= 21 (`npm install -g @angular/cli`)
+- PHP >= 8.2 (для бэкенда)
+- Composer (для бэкенда)
 
-```bash
-ng serve
-```
+---
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+## Установка и запуск
 
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+### 1. Клонировать репозиторий
 
 ```bash
-ng generate --help
+git clone https://github.com/Banstra/Galaux.git
+cd Galaux
 ```
 
-## Building
-
-To build the project run:
+### 2. Запустить бэкенд (Laravel)
 
 ```bash
-ng build
+cd galaux
+
+# Установить PHP-зависимости
+composer install
+
+# Скопировать конфиг окружения и сгенерировать ключ
+cp .env.example .env
+php artisan key:generate
+
+# Запустить миграции
+php artisan migrate
+
+# Запустить сервер
+php artisan serve
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+Бэкенд будет доступен на `http://localhost:8000`.
 
-## Running unit tests
-
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
+### 3. Запустить фронтенд (Angular)
 
 ```bash
-ng test
+cd galaux/frontend/galaux_front
+
+# Установить зависимости
+npm install
+
+# Запустить dev-сервер
+npm start
 ```
 
-## Running end-to-end tests
+Фронтенд будет доступен на `http://localhost:4200`.
 
-For end-to-end (e2e) testing, run:
+---
+
+## Структура фронтенда
+
+```text
+src/
+├── app/
+│   ├── components/
+│   │   ├── pages/
+│   │   │   ├── landing/      # Лендинг с кнопкой входа
+│   │   │   └── auth/         # Страница авторизации
+│   │   └── shared/
+│   │       └── navbar/       # Навбар
+│   ├── app.routes.ts         # Маршруты
+│   ├── app.config.ts         # Конфигурация приложения
+│   └── app.ts                # Корневой компонент
+└── styles.css                # Глобальные стили
+```
+
+## Маршруты
+
+| Путь    | Компонент        | Описание             |
+|---------|------------------|----------------------|
+| `/`     | LandingComponent | Лендинг              |
+| `/auth` | AuthComponent    | Страница авторизации |
+
+---
+
+## Полезные команды
 
 ```bash
-ng e2e
+# Dev-сервер с автоперезагрузкой
+npm start
+
+# Production-сборка
+npm run build
+
+# Запуск тестов
+npm test
+
+# Генерация нового компонента
+ng generate component components/pages/my-page
 ```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.

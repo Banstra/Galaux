@@ -1,0 +1,40 @@
+.landing-wrapper {
+  min-height: 100vh;
+  background-color: #eef2f7;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.landing-content {
+  text-align: center;
+}
+
+.landing-title {
+  font-size: 56px;
+  font-weight: 700;
+  color: #111827;
+  margin: 0 0 12px;
+}
+
+.landing-subtitle {
+  font-size: 18px;
+  color: #6b7280;
+  margin: 0 0 40px;
+}
+
+.btn-enter {
+  display: inline-block;
+  padding: 14px 48px;
+  background: #2563eb;
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: background 0.2s;
+}
+
+.btn-enter:hover {
+  background: #1d4ed8;
+}

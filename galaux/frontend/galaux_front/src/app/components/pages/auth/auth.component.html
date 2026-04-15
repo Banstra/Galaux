@@ -1,0 +1,73 @@
+<div class="auth-wrapper">
+  <div class="auth-card">
+    <h1 class="auth-title">Добро пожаловать</h1>
+    <p class="auth-subtitle">Пожалуйста, войдите чтобы продолжить</p>
+
+    <form (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label class="form-label" for="login">Логин</label>
+        <input
+          id="login"
+          class="form-input"
+          type="text"
+          placeholder="Введите логин"
+          [(ngModel)]="login"
+          name="login"
+          required
+        />
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="password">Пароль</label>
+        <div class="input-wrapper">
+          <input
+            id="password"
+            class="form-input"
+            [type]="showPassword() ? 'text' : 'password'"
+            placeholder="Введите пароль"
+            [(ngModel)]="password"
+            name="password"
+            required
+          />
+          <button type="button" class="toggle-password" (click)="togglePassword()">
+            @if (showPassword()) {
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94"/><path d="M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19"/><line x1="1" y1="1" x2="23" y2="23"/></svg>
+            } @else {
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+            }
+          </button>
+        </div>
+        <p class="form-hint">Минимум 8 символов — буквы, цифры и спецсимволы.</p>
+      </div>
+
+      <div class="form-row">
+        <label class="remember-label">
+          <input type="checkbox" [(ngModel)]="rememberMe" name="rememberMe" />
+          <span>Запомнить меня</span>
+        </label>
+        <a href="#" class="forgot-link">Забыли пароль?</a>
+      </div>
+
+      <button type="submit" class="btn-primary">Войти</button>
+    </form>
+
+    <div class="divider">
+      <span>Или войти через</span>
+    </div>
+
+    <div class="social-buttons">
+      <button type="button" class="btn-social">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M15.684 0H8.316C1.592 0 0 1.592 0 8.316v7.368C0 22.408 1.592 24 8.316 24h7.368C22.408 24 24 22.408 24 15.684V8.316C24 1.592 22.408 0 15.684 0zm3.692 17.123h-1.744c-.66 0-.864-.525-2.05-1.727-1.033-1-1.49-1.135-1.744-1.135-.356 0-.458.102-.458.593v1.575c0 .424-.135.678-1.253.678-1.846 0-3.896-1.118-5.335-3.202C4.624 10.857 4 8.408 4 7.932c0-.254.102-.491.593-.491h1.744c.44 0 .61.203.78.677.863 2.49 2.303 4.675 2.896 4.675.22 0 .322-.102.322-.66V9.721c-.068-1.186-.695-1.287-.695-1.71 0-.204.17-.407.44-.407h2.744c.373 0 .508.203.508.643v3.473c0 .372.17.508.271.508.22 0 .407-.136.813-.542 1.254-1.406 2.151-3.574 2.151-3.574.119-.254.322-.491.762-.491h1.744c.525 0 .643.27.525.643-.22 1.017-2.354 4.031-2.354 4.031-.186.305-.254.44 0 .78.186.254.796.779 1.203 1.253.745.847 1.32 1.558 1.473 2.05.17.49-.085.745-.576.745z"/></svg>
+        ВКонтакте
+      </button>
+      <button type="button" class="btn-social">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M2.04 12c0-5.523 4.476-10 9.998-10C17.522 2 22 6.477 22 12s-4.478 10-9.962 10C6.516 22 2.04 17.523 2.04 12zm10.01 4.932V12.93h1.125c2.116 0 3.816-1.7 3.816-3.816C17 7.002 15.3 5.3 13.175 5.3H10.5v11.632h1.55z"/></svg>
+        Яндекс
+      </button>
+    </div>
+
+    <div class="divider-line"></div>
+
+    <p class="signup-link">Нет аккаунта? <a routerLink="/">Зарегистрироваться</a></p>
+  </div>
+</div>
