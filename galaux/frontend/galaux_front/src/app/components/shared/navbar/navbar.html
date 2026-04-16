@@ -1,1 +1,36 @@
-<p>navbar works!</p>
+<p-toolbar styleClass="navbar-custom">
+  <ng-template #start>
+    <div class="logo-section">
+        <img src="assets/images/logo.png" width="100" alt="logo" routerLink="/landing">
+    </div>
+  </ng-template>
+
+  <ng-template #center>
+    <nav class="nav-links">
+      <a pRipple class="nav-item" routerLink="/">
+        <i class="pi pi-home"></i>
+        <span>Главная</span>
+      </a>
+      <a pRipple class="nav-item" routerLink="/rules">
+        <i class="pi pi-book"></i>
+        <span>Правила</span>
+      </a>
+      <a pRipple class="nav-item" routerLink="/help">
+        <i class="pi pi-comment"></i>
+        <span>Помощь</span>
+      </a>
+      <a class="nav-item" routerLink="/launcher">
+        <i class="pi pi-download"></i>
+        <span>Лаунчер</span>
+      </a>
+    </nav>
+  </ng-template>
+
+  <ng-template #end>
+    <p-button
+      label="Войти"
+      styleClass="bg-blue-500 border-round-lg text-white hover:bg-blue-900"
+      routerLink="/auth">
+    </p-button>
+  </ng-template>
+</p-toolbar>

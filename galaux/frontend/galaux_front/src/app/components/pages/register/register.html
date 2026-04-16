@@ -1,0 +1,242 @@
+<div class="auth-wrapper">
+  <div class="auth-card">
+    <h1 class="auth-title">Создать аккаунт</h1>
+    <p class="auth-subtitle">Заполните форму для регистрации</p>
+
+    <form (ngSubmit)="onSubmit()" [class.loading]="isLoading()">
+
+      <!-- Сообщения -->
+      @if (error()) {
+        <div class="p-message p-message-error mb-3 w-full">
+          <div class="p-message-wrapper">
+            <span class="p-message-text">{{ error() }}</span>
+          </div>
+        </div>
+      }
+
+      @if (success()) {
+        <div class="p-message p-message-success mb-3 w-full">
+          <div class="p-message-wrapper">
+            <span class="p-message-text">
+              ✅ Регистрация успешна! Перенаправляем на вход...
+            </span>
+          </div>
+        </div>
+      }
+
+      @if (isLoading()) {
+        <p-progressBar mode="indeterminate" styleClass="mb-3" />
+      }
+
+      <!-- Имя -->
+      <div class="form-group mb-3">
+        <label class="form-label block mb-2 font-medium" for="name">
+          Имя <span class="text-red-500">*</span>
+        </label>
+        <input
+          id="name"
+          pInputText
+          class="form-input w-full"
+          type="text"
+          placeholder="Введите ваше имя"
+          [(ngModel)]="name"
+          name="name"
+          [disabled]="isLoading()"
+          maxlength="255"
+          autocomplete="name"
+        />
+        <small class="text-gray-500 text-xs mt-1 block">Макс. 255 символов</small>
+      </div>
+
+      <!-- Логин -->
+      <div class="form-group mb-3">
+        <label class="form-label block mb-2 font-medium" for="login">
+          Логин <span class="text-red-500">*</span>
+        </label>
+        <input
+          id="login"
+          pInputText
+          class="form-input w-full"
+          type="text"
+          placeholder="Придумайте логин"
+          [(ngModel)]="login"
+          name="login"
+          [disabled]="isLoading()"
+          maxlength="255"
+          autocomplete="username"
+        />
+        <small class="text-gray-500 text-xs mt-1 block">Макс. 255 символов</small>
+      </div>
+
+      <!-- Email -->
+      <div class="form-group mb-3">
+        <label class="form-label block mb-2 font-medium" for="email">
+          Email <span class="text-red-500">*</span>
+        </label>
+        <input
+          id="email"
+          pInputText
+          class="form-input w-full"
+          type="email"
+          placeholder="your@email.com"
+          [(ngModel)]="email"
+          name="email"
+          [disabled]="isLoading()"
+          maxlength="255"
+          autocomplete="email"
+        />
+      </div>
+
+      <!-- Пароль -->
+      <div class="form-group mb-3">
+        <label class="form-label block mb-2 font-medium" for="password">
+          Пароль <span class="text-red-500">*</span>
+        </label>
+        <div class="input-wrapper flex gap-2">
+          <input
+            id="password"
+            pInputText
+            class="form-input flex-1"
+            [type]="showPassword() ? 'text' : 'password'"
+            placeholder="Минимум 6 символов"
+            [(ngModel)]="password"
+            name="password"
+            [disabled]="isLoading()"
+            autocomplete="new-password"
+          />
+          <p-button
+            type="button"
+            pRipple
+            [icon]="showPassword() ? 'pi pi-eye-slash' : 'pi pi-eye'"
+            class="p-button-secondary p-button-outlined"
+            (click)="togglePassword()"
+            [disabled]="isLoading()"
+            tabindex="-1">
+          </p-button>
+        </div>
+        <small class="text-gray-500 text-xs mt-1 block">Мин. 6 символов</small>
+      </div>
+
+      <!-- Подтверждение пароля -->
+      <div class="form-group mb-3">
+        <label class="form-label block mb-2 font-medium" for="confirmPassword">
+          Подтвердите пароль <span class="text-red-500">*</span>
+        </label>
+        <div class="input-wrapper flex gap-2">
+          <input
+            id="confirmPassword"
+            pInputText
+            class="form-input flex-1"
+            [type]="showConfirmPassword() ? 'text' : 'password'"
+            placeholder="Повторите пароль"
+            [(ngModel)]="confirmPassword"
+            name="confirmPassword"
+            [disabled]="isLoading()"
+            autocomplete="new-password"
+          />
+          <p-button
+            type="button"
+            pRipple
+            [icon]="showConfirmPassword() ? 'pi pi-eye-slash' : 'pi pi-eye'"
+            class="p-button-secondary p-button-outlined"
+            (click)="toggleConfirmPassword()"
+            [disabled]="isLoading()"
+            tabindex="-1">
+          </p-button>
+        </div>
+      </div>
+
+      <!-- Несовершеннолетний -->
+      <div class="form-group mb-3">
+        <div class="flex items-center gap-2 p-3 border border-gray-200 rounded-lg bg-gray-50">
+          <p-checkbox
+            [(ngModel)]="isChild"
+            name="isChild"
+            [binary]="true"
+            [disabled]="isLoading()"
+            inputId="isChild">
+          </p-checkbox>
+          <label for="isChild" class="flex-1 cursor-pointer">
+            <span class="font-medium">Я несовершеннолетний</span>
+            <small class="block text-gray-500 text-xs mt-1">
+              Если вам нет 18 лет, укажите ID родителя
+            </small>
+          </label>
+        </div>
+      </div>
+
+      <!-- ID родителя (показывается если isChild = true) -->
+      @if (isChild) {
+        <div class="form-group mb-3 animate-fadeIn">
+          <label class="form-label block mb-2 font-medium" for="parentId">
+            ID родителя <span class="text-red-500">*</span>
+          </label>
+          <input
+            id="parentId"
+            pInputText
+            class="form-input w-full"
+            type="number"
+            placeholder="Введите ID родителя"
+            [(ngModel)]="parentId"
+            name="parentId"
+            [disabled]="isLoading()"
+          />
+        </div>
+      }
+
+      <!-- Кнопка регистрации -->
+      <button
+        type="submit"
+        pButton
+        pRipple
+        label="{{ isLoading() ? 'Регистрация...' : 'Зарегистрироваться' }}"
+        icon="pi pi-user-plus"
+        iconPos="left"
+        class="btn-primary w-full mt-4"
+        [disabled]="isLoading()"
+        [loading]="isLoading()">
+      </button>
+    </form>
+
+    <!-- Разделитель -->
+    <div class="divider my-4 flex items-center">
+      <div class="flex-1 border-t border-gray-300"></div>
+      <span class="px-3 text-gray-500 text-sm">Или зарегистрироваться через</span>
+      <div class="flex-1 border-t border-gray-300"></div>
+    </div>
+
+    <!-- Социальные сети -->
+    <div class="social-buttons flex gap-3">
+      <a
+        pButton
+        pRipple
+        class="btn-social flex-1 no-underline p-button-outlined"
+        href="https://www.galauxminecraftapi.ru/api/auth/vkid/redirect"
+        target="_blank"
+        rel="noopener noreferrer">
+        <svg class="mr-2" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M15.684 0H8.316C1.592 0 0 1.592 0 8.316v7.368C0 22.408 1.592 24 8.316 24h7.368C22.408 24 24 22.408 24 15.684V8.316C24 1.592 22.408 0 15.684 0zm3.692 17.123h-1.744c-.66 0-.864-.525-2.05-1.727-1.033-1-1.49-1.135-1.744-1.135-.356 0-.458.102-.458.593v1.575c0 .424-.135.678-1.253.678-1.846 0-3.896-1.118-5.335-3.202C4.624 10.857 4 8.408 4 7.932c0-.254.102-.491.593-.491h1.744c.44 0 .61.203.78.677.863 2.49 2.303 4.675 2.896 4.675.22 0 .322-.102.322-.66V9.721c-.068-1.186-.695-1.287-.695-1.71 0-.204.17-.407.44-.407h2.744c.373 0 .508.203.508.643v3.473c0 .372.17.508.271.508.22 0 .407-.136.813-.542 1.254-1.406 2.151-3.574 2.151-3.574.119-.254.322-.491.762-.491h1.744c.525 0 .643.27.525.643-.22 1.017-2.354 4.031-2.354 4.031-.186.305-.254.44 0 .78.186.254.796.779 1.203 1.253.745.847 1.32 1.558 1.473 2.05.17.49-.085.745-.576.745z"/>
+        </svg>
+        ВКонтакте
+      </a>
+      <a
+        pButton
+        pRipple
+        class="btn-social flex-1 no-underline p-button-outlined"
+        href="https://www.galauxminecraftapi.ru/api/auth/yandex/redirect"
+        target="_blank"
+        rel="noopener noreferrer">
+        <svg class="mr-2" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M2.04 12c0-5.523 4.476-10 9.998-10C17.522 2 22 6.477 22 12s-4.478 10-9.962 10C6.516 22 2.04 17.523 2.04 12zm10.01 4.932V12.93h1.125c2.116 0 3.816-1.7 3.816-3.816C17 7.002 15.3 5.3 13.175 5.3H10.5v11.632h1.55z"/>
+        </svg>
+        Яндекс
+      </a>
+    </div>
+
+    <!-- Ссылка на вход -->
+    <div class="divider-line my-4"></div>
+    <p class="signup-link text-center text-sm">
+      Уже есть аккаунт? <a routerLink="/auth" class="text-primary font-medium hover:underline">Войти</a>
+    </p>
+  </div>
+</div>
