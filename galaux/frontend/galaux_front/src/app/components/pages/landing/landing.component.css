@@ -1,40 +1,345 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,100..900&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
+
 .landing-wrapper {
-  min-height: 100vh;
-  background-color: #eef2f7;
+  font-family: 'Inter', 'Nunito', sans-serif;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 1rem;
+  color: #4a90e2;
+  font-weight: 400;
+}
+
+.hero {
+  text-align: center;
+  padding: 4rem 1rem;
+  color: white;
+  border-radius: 1.5rem;
+}
+
+.hero h1 {
+  font-family: 'Nunito', sans-serif;
+  color: #4a90e2;
+  font-size: 3.5rem;
+  font-weight: 500;
+}
+
+.slogan {
+  color: #4a90e2;
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+  opacity: 0.9;
+}
+
+.hero-content {
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.hero-buttons {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+.hero-buttons button {
+  padding: 0.75rem 1.5rem;
+  background-color: #4a90e2;
+  margin: 0 auto;
+  border-radius: 15px;
+  box-shadow:
+    inset -2px -2px 5px rgba(0, 0, 0, 0.2),
+    inset 2px 2px 5px rgba(255, 255, 255, 0.8);
+  transition: all 0.1s ease;
+}
+
+.hero-buttons button:hover {
+  background-color: #692aa9;
+}
+
+/* Блок скачивания */
+.download {
+  text-align: center;
+  padding: 2rem;
+  border-radius: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.download h2 {
+  font-family: 'Nunito', sans-serif;
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.download p {
+  margin-bottom: 2rem;
+  color: #4a90e2;
+}
+
+/* Контейнер с отступами 60px по бокам */
+.download-buttons-wrapper {
+  padding: 0 60px;
+}
+
+/* Родительский контейнер двух кнопок */
+.download-buttons {
+  display: flex;
+  gap: 40px;
+  justify-content: center;
+}
+
+/* Стили для каждой кнопки */
+.download-btn {
+  flex: 1;
+  background-color: #4a90e2;
+  border-color: #4a90e2;
+  display: flex !important;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding: 24px 16px;
+  font-size: 1.2rem;
+  font-weight: 600;
+  border-radius: 16px;
+  transition: all 0.2s ease;
+  /* Объёмная внутренняя тень */
+  box-shadow:
+    inset -2px -2px 5px rgba(0, 0, 0, 0.2),
+    inset 2px 2px 5px rgba(255, 255, 255, 0.8);
+}
+
+/* Контейнер для иконки (обеспечивает размер 100x100) */
+.btn-icon {
+  width: 100px;
+  height: 100px;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.landing-content {
+/* SVG внутри контейнера */
+.btn-icon svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* Текст кнопки */
+.download-btn span {
+  line-height: 1;
+  font-weight: 400;
+  color: #fff;
+}
+
+/* Hover – затемняем цвет */
+.download-btn:hover {
+  background-color: #692aa9;
+}
+
+/* Активное состояние (нажатие) */
+.download-btn:active {
+  transform: translateY(2px);
+  box-shadow:
+    inset -1px -1px 3px rgba(0, 0, 0, 0.3),
+    inset 1px 1px 3px rgba(255, 255, 255, 0.6);
+}
+
+.servers-section {
   text-align: center;
+  padding: 2rem 0;
 }
 
-.landing-title {
-  font-size: 56px;
-  font-weight: 700;
-  color: #111827;
-  margin: 0 0 12px;
+.servers-section h2 {
+  font-family: 'Nunito', sans-serif;
+  font-size: 2rem;
 }
 
-.landing-subtitle {
-  font-size: 18px;
-  color: #6b7280;
-  margin: 0 0 40px;
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.75rem;
+  margin: 1.5rem 0;
 }
 
-.btn-enter {
-  display: inline-block;
-  padding: 14px 48px;
-  background: #2563eb;
-  color: #ffffff;
-  font-size: 16px;
-  font-weight: 600;
-  border-radius: 8px;
-  text-decoration: none;
+.filters ::ng-deep .p-chip {
+  background: #e2e8f0;
+  cursor: pointer;
   transition: background 0.2s;
 }
 
-.btn-enter:hover {
-  background: #1d4ed8;
+.filters ::ng-deep .p-chip:hover {
+  background: #cbd5e1;
+}
+
+.servers-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin: 2rem 0;
+}
+
+.server-card {
+  text-align: left;
+}
+
+.card-header {
+  padding: 1rem;
+}
+
+.card-header h3 {
+  margin: 0 0 0.5rem 0;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 700;
+}
+
+.tags {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.tag {
+  background: #e2e8f0;
+  padding: 0.2rem 0.6rem;
+  border-radius: 20px;
+  font-size: 0.75rem;
+}
+
+.online {
+  margin-top: 0.75rem;
+  font-size: 0.85rem;
+  color: #475569;
+}
+
+.show-more {
+  text-align: center;
+  margin-top: 1rem;
+}
+
+/* Блок безопасности */
+.safety {
+  padding: 3rem 1rem;
+  border-radius: 1.5rem;
+  margin: 2rem 0;
+}
+
+.safety h2 {
+  font-family: 'Nunito', sans-serif;
+  font-size: 2rem;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.safety-sections {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+}
+
+.safety-row {
+  display: flex;
+  align-items: center;
+  gap: 3rem;
+  flex-wrap: wrap;
+}
+
+.safety-row.cards-left {
+  flex-direction: row;
+}
+
+.safety-row.image-left {
+  flex-direction: row;
+}
+
+/* Сетка карточек (3 колонки) */
+.safety-cards {
+  flex: 2;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+.safety-card {
+  background: white;
+  border-radius: 1rem;
+  padding: 1.5rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s;
+}
+
+.safety-card:hover {
+  transform: translateY(-5px);
+}
+
+.safety-card h3 {
+  font-family: 'Nunito', sans-serif;
+  font-size: 1.2rem;
+  margin-bottom: 0.75rem;
+  color: #0f172a;
+}
+
+.safety-card p {
+  font-size: 0.9rem;
+  color: #475569;
+  margin-bottom: 1rem;
+  line-height: 1.4;
+}
+
+.card-extra {
+  font-size: 0.85rem;
+  color: #4a90e2;
+  font-weight: 500;
+  cursor: pointer;
+  display: inline-block;
+}
+
+.safety-image {
+  flex: 1;
+}
+
+.safety-image img {
+  width: 100%;
+  border-radius: 1rem;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Текстовый блок для варианта image-left */
+.safety-text {
+  flex: 1;
+  background: white;
+  padding: 2rem;
+  border-radius: 1rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.safety-text h3 {
+  font-family: 'Nunito', sans-serif;
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+  color: #0f172a;
+}
+
+.safety-text p {
+  font-size: 1rem;
+  color: #334155;
+  margin-bottom: 1rem;
+  line-height: 1.5;
+}
+
+@media (max-width: 768px) {
+  .hero h1 {
+    font-size: 2.5rem;
+  }
+  .hero-buttons button,
+  .download-buttons button {
+    display: block;
+    width: 80%;
+    margin: 0.5rem auto;
+  }
+  .safety-item {
+    min-width: 100%;
+  }
 }
