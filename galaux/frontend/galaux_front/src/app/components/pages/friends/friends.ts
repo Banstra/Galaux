@@ -7,6 +7,7 @@ import { AvatarModule } from 'primeng/avatar';
 import { TooltipModule } from 'primeng/tooltip';
 import { ToastModule } from 'primeng/toast';
 import { CheckboxModule } from 'primeng/checkbox';
+import {Navbuttons} from '../../shared/navbuttons/navbuttons';
 
 
 export interface Friend {
@@ -26,7 +27,8 @@ export interface Friend {
     ButtonModule,
     TooltipModule,
     ToastModule,
-    CheckboxModule
+    CheckboxModule,
+    Navbuttons
   ],
   templateUrl: './friends.html',
   styleUrl: './friends.css',

@@ -8,6 +8,7 @@ import { BadgeModule } from 'primeng/badge';
 import { PanelModule } from 'primeng/panel';
 import {TabsModule} from 'primeng/tabs';
 import { ToggleSwitchModule } from 'primeng/toggleswitch';
+import {Navbuttons} from '../../shared/navbuttons/navbuttons';
 import { MenuItem } from 'primeng/api';
 
 // src/app/models/messenger.models.ts
@@ -47,7 +48,8 @@ export interface User {
     BadgeModule,
     PanelModule,
     TabsModule,
-    ToggleSwitchModule
+    ToggleSwitchModule,
+    Navbuttons
   ],
   templateUrl: './messages.html',
   styleUrl: './messages.css',
