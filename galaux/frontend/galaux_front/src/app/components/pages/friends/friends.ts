@@ -7,8 +7,6 @@ import { AvatarModule } from 'primeng/avatar';
 import { TooltipModule } from 'primeng/tooltip';
 import { ToastModule } from 'primeng/toast';
 import { CheckboxModule } from 'primeng/checkbox';
-import {Navbuttons} from '../../shared/navbuttons/navbuttons';
-
 
 export interface Friend {
   id: number;
@@ -28,7 +26,6 @@ export interface Friend {
     TooltipModule,
     ToastModule,
     CheckboxModule,
-    Navbuttons
   ],
   templateUrl: './friends.html',
   styleUrl: './friends.css',
@@ -81,5 +78,18 @@ export class Friends implements OnInit {
       summary: 'Чат',
       detail: `Открыт диалог с ${friend.name}`
     });
+  }
+
+  getOnlineCount(): number {
+    return this.friends.filter(f => f.status === 'online').length;
+  }
+
+  getOfflineCount(): number {
+    return this.friends.filter(f => f.status !== 'online').length;
+  }
+
+  getAvatarColor(id: number): string {
+    const colors = ['#3b82f6', '#7c3aed', '#059669', '#ea580c', '#db2777'];
+    return colors[id % colors.length];
   }
 }

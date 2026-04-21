@@ -1,1 +1,217 @@
-<p>profile works!</p>
+<div class="profile-page">
+
+  <!-- Banner -->
+  <div class="profile-banner">
+    <img src="assets/banner.jpg" alt="Баннер профиля" class="banner-img" onerror="this.style.display='none'">
+  </div>
+
+  <!-- Profile info -->
+  <div class="profile-info-wrap">
+    <div class="profile-avatar-wrap">
+      <div class="profile-avatar">
+        <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" class="avatar-logo">
+          <rect x="4" y="4" width="24" height="24" rx="3" stroke="#4f46e5" stroke-width="4" fill="none"/>
+          <rect x="36" y="4" width="24" height="24" rx="3" stroke="#4f46e5" stroke-width="4" fill="none"/>
+          <rect x="4" y="36" width="24" height="24" rx="3" stroke="#4f46e5" stroke-width="4" fill="none"/>
+          <rect x="36" y="36" width="24" height="24" rx="3" stroke="#4f46e5" stroke-width="4" fill="none"/>
+        </svg>
+      </div>
+    </div>
+
+    <h1 class="profile-name">Алексей Крылов</h1>
+    <p class="profile-bio">Строитель и исследователь · Сервер Galaux с 2022 года</p>
+
+    <div class="profile-actions">
+      <button type="button" class="btn-primary">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/></svg>
+        Создать пост
+      </button>
+      <button type="button" class="btn-secondary">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/></svg>
+        Настроить профиль
+      </button>
+    </div>
+
+    <!-- Stats -->
+    <div class="profile-stats">
+      <div class="stat-item">
+        <span class="stat-value">24</span>
+        <span class="stat-label">Постов</span>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat-item">
+        <span class="stat-value">138</span>
+        <span class="stat-label">Друзей</span>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat-item">
+        <span class="stat-value">512</span>
+        <span class="stat-label">Подписчиков</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Posts feed -->
+  <div class="profile-feed">
+
+    <article class="post-card">
+      <div class="post-header">
+        <div class="post-author">
+          <div class="avatar">АК</div>
+          <div class="author-info">
+            <span class="author-name">Алексей Крылов</span>
+            <span class="post-time">10 минут назад</span>
+          </div>
+        </div>
+        <button type="button" class="menu-btn" title="Меню поста" aria-label="Открыть меню поста">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+
+      <div class="post-body">
+        <h3 class="post-title">Закончил строить замок в горном биоме!</h3>
+        <p class="post-text">
+          Полгода работы — и наконец готово. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+          Использовал каменный кирпич, обсидиан и дерево тёмного дуба. Внутри три этажа, тронный зал
+          и библиотека. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+          Если хотите посетить — координаты в комментариях.
+        </p>
+        <div class="post-image">
+          <div class="post-image-placeholder">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#9ca3af" stroke-width="1.5">
+              <rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/>
+              <polyline points="21 15 16 10 5 21"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <div class="post-footer">
+        <button type="button" class="action-btn" title="Нравится" aria-label="Нравится">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+          </svg>
+          <span>84</span>
+        </button>
+        <button type="button" class="action-btn" title="Комментировать" aria-label="Комментировать">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/>
+          </svg>
+          <span>17</span>
+        </button>
+        <button type="button" class="action-btn" title="Поделиться" aria-label="Поделиться">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/>
+            <polyline points="16 6 12 2 8 6"/>
+            <line x1="12" y1="2" x2="12" y2="15"/>
+          </svg>
+          <span>Поделиться</span>
+        </button>
+      </div>
+    </article>
+
+    <article class="post-card">
+      <div class="post-header">
+        <div class="post-author">
+          <div class="avatar">АК</div>
+          <div class="author-info">
+            <span class="author-name">Алексей Крылов</span>
+            <span class="post-time">2 дня назад</span>
+          </div>
+        </div>
+        <button type="button" class="menu-btn" title="Меню поста" aria-label="Открыть меню поста">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+
+      <div class="post-body">
+        <h3 class="post-title">Участвую в PvP-турнире — первый раунд позади</h3>
+        <p class="post-text">
+          Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris. Первый раунд прошёл
+          успешно — выиграл все три схватки. Противники были серьёзные, особенно в третьей битве.
+          Quis aute iure reprehenderit in voluptate velit esse. Готовлюсь к полуфиналу в следующую пятницу.
+        </p>
+      </div>
+
+      <div class="post-footer">
+        <button type="button" class="action-btn" title="Нравится" aria-label="Нравится">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+          </svg>
+          <span>51</span>
+        </button>
+        <button type="button" class="action-btn" title="Комментировать" aria-label="Комментировать">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/>
+          </svg>
+          <span>9</span>
+        </button>
+        <button type="button" class="action-btn" title="Поделиться" aria-label="Поделиться">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/>
+            <polyline points="16 6 12 2 8 6"/>
+            <line x1="12" y1="2" x2="12" y2="15"/>
+          </svg>
+          <span>Поделиться</span>
+        </button>
+      </div>
+    </article>
+
+    <article class="post-card">
+      <div class="post-header">
+        <div class="post-author">
+          <div class="avatar">АК</div>
+          <div class="author-info">
+            <span class="author-name">Алексей Крылов</span>
+            <span class="post-time">Неделю назад</span>
+          </div>
+        </div>
+        <button type="button" class="menu-btn" title="Меню поста" aria-label="Открыть меню поста">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+
+      <div class="post-body">
+        <h3 class="post-title">Гайд: прокачка базы с нуля за 3 дня</h3>
+        <p class="post-text">
+          Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore. Делюсь
+          проверенным маршрутом: сначала дерево и камень, потом железная шахта на 12 уровне.
+          Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit.
+          За первые три дня реально выйти с полным железным комплектом и укреплённым убежищем.
+        </p>
+        <div class="post-image">
+          <div class="post-image-placeholder">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#9ca3af" stroke-width="1.5">
+              <rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/>
+              <polyline points="21 15 16 10 5 21"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <div class="post-footer">
+        <button type="button" class="action-btn" title="Нравится" aria-label="Нравится">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+          </svg>
+          <span>213</span>
+        </button>
+        <button type="button" class="action-btn" title="Комментировать" aria-label="Комментировать">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/>
+          </svg>
+          <span>64</span>
+        </button>
+        <button type="button" class="action-btn" title="Поделиться" aria-label="Поделиться">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/>
+            <polyline points="16 6 12 2 8 6"/>
+            <line x1="12" y1="2" x2="12" y2="15"/>
+          </svg>
+          <span>Поделиться</span>
+        </button>
+      </div>
+    </article>
+
+  </div>
+</div>

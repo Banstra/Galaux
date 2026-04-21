@@ -1,113 +1,99 @@
-<div class="w-100 flex justify-content-center"><app-navbuttons></app-navbuttons></div>
-<div class="messenger-container" [class.dark-theme]="darkTheme">
-  <!-- Шапка -->
+<div class="messenger">
 
+  <!-- Sidebar -->
+  <aside class="conversations-sidebar">
+    <div class="sidebar-header">
+      <h2 class="sidebar-title">Сообщения</h2>
+      <button type="button" class="icon-btn" title="Новый диалог">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M12 5v14M5 12h14"/>
+        </svg>
+      </button>
+    </div>
 
-  <!-- Вкладки -->
-  <div class="tabs-container">
-    <p-tabs
-      styleClass="custom-tabmenu">
-    </p-tabs>
-  </div>
+    <div class="conv-list">
+      @for (conv of conversations; track conv.id) {
+        <div
+          class="conv-item"
+          [class.active]="selectedConversation?.id === conv.id"
+          (click)="selectConversation(conv)">
 
-  <!-- Основной контент -->
-  <div class="messenger-content">
-    <!-- Список диалогов -->
-    <aside class="conversations-sidebar">
-      <div class="conversation-item"
-           *ngFor="let conv of conversations"
-           [class.active]="selectedConversation?.id === conv.id"
-           (click)="selectConversation(conv)">
-        <div class="conversation-avatar">
-          <p-avatar
-            [icon]="conv.isOnline ? 'pi pi-user' : 'pi pi-user'"
-            shape="circle"
-            size="large"
-            [style]="{'background-color': conv.isOnline ? '#10b981' : '#9ca3af'}">
-          </p-avatar>
-          <span class="online-indicator" *ngIf="conv.isOnline"></span>
-        </div>
-
-        <div class="conversation-info">
-          <div class="conversation-header">
-            <h3 class="conversation-name">{{ conv.name }}</h3>
-            <span class="conversation-time">{{ formatTime(conv.lastMessageTime) }}</span>
+          <div class="conv-avatar-wrap">
+            <div class="conv-avatar">{{ conv.name.charAt(0) }}</div>
+            @if (conv.isOnline) {
+              <span class="online-dot"></span>
+            }
           </div>
-          <p class="conversation-last-message">{{ conv.lastMessage }}</p>
+
+          <div class="conv-info">
+            <div class="conv-top">
+              <span class="conv-name">{{ conv.name }}</span>
+              <span class="conv-time">{{ formatTime(conv.lastMessageTime) }}</span>
+            </div>
+            <p class="conv-last">{{ conv.lastMessage }}</p>
+          </div>
+
+          @if (conv.unreadCount) {
+            <span class="unread-badge">{{ conv.unreadCount }}</span>
+          }
         </div>
+      }
+    </div>
+  </aside>
 
-        <p-badge
-          *ngIf="conv.unreadCount"
-          [value]="conv.unreadCount"
-          severity="danger"
-          class="unread-badge">
-        </p-badge>
-      </div>
-    </aside>
-
-    <!-- Область чата -->
-    <main class="chat-area" *ngIf="selectedConversation">
-      <!-- Заголовок чата -->
+  <!-- Chat area -->
+  @if (selectedConversation) {
+    <main class="chat-area">
       <div class="chat-header">
-        <div class="chat-user-info">
-          <p-avatar
-            [icon]="'pi pi-user'"
-            shape="circle"
-            size="large"
-            [style]="{'background-color': selectedConversation.isOnline ? '#10b981' : '#9ca3af'}">
-          </p-avatar>
-          <div class="chat-user-details">
-            <h2>{{ selectedConversation.name }}</h2>
-            <span class="user-status" [class.online]="selectedConversation.isOnline">
-              {{ selectedConversation.isOnline ? 'Онлайн' : 'Офлайн' }}
-            </span>
-          </div>
+        <div class="chat-avatar-wrap">
+          <div class="chat-avatar">{{ selectedConversation.name.charAt(0) }}</div>
+          @if (selectedConversation.isOnline) {
+            <span class="online-dot"></span>
+          }
+        </div>
+        <div class="chat-user-details">
+          <span class="chat-username">{{ selectedConversation.name }}</span>
+          <span class="chat-status" [class.online]="selectedConversation.isOnline">
+            {{ selectedConversation.isOnline ? 'В сети' : 'Не в сети' }}
+          </span>
         </div>
       </div>
 
-      <!-- Сообщения -->
       <div class="chat-messages">
-        <div *ngFor="let message of messages"
-             class="message-wrapper"
-             [class.own]="message.isOwn">
-          <div class="message-bubble" [class.own]="message.isOwn">
-            <p class="message-text">{{ message.text }}</p>
-            <span class="message-time">{{ formatTime(message.timestamp) }}</span>
+        @for (message of messages; track message.id) {
+          <div class="msg-wrap" [class.own]="message.isOwn">
+            <div class="msg-bubble" [class.own]="message.isOwn">
+              <p class="msg-text">{{ message.text }}</p>
+              <span class="msg-time">{{ formatTime(message.timestamp) }}</span>
+            </div>
           </div>
-        </div>
+        }
       </div>
 
-      <!-- Поле ввода -->
       <div class="chat-input-area">
-        <div class="input-container">
-          <input
-            type="text"
-            pInputText
-            [(ngModel)]="newMessageText"
-            (keypress)="onKeyPress($event)"
-            placeholder="Введите сообщение..."
-            class="message-input">
-
-          <button
-            pButton
-            type="button"
-            icon="pi pi-send"
-            class="p-button-rounded p-button-primary send-button"
-            (click)="sendMessage()">
-          </button>
-        </div>
+        <input
+          type="text"
+          class="msg-input"
+          [(ngModel)]="newMessageText"
+          (keydown)="onKeyPress($event)"
+          placeholder="Введите сообщение...">
+        <button type="button" class="send-btn" (click)="sendMessage()" aria-label="Отправить сообщение" title="Отправить">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M2 21l21-9L2 3v7l15 2-15 2v7z"/>
+          </svg>
+        </button>
       </div>
     </main>
-
-    <!-- Заглушка, если диалог не выбран -->
-    <main class="chat-area chat-empty" *ngIf="!selectedConversation">
+  } @else {
+    <main class="chat-area chat-empty">
       <div class="empty-state">
-        <i class="pi pi-comments" style="font-size: 4rem; color: #9ca3af;"></i>
-        <h2>Выберите диалог</h2>
-        <p>Выберите разговор из списка слева, чтобы начать общение</p>
+        <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#d1d5db" stroke-width="1.5">
+          <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+        </svg>
+        <h3>Выберите диалог</h3>
+        <p>Выберите разговор из списка, чтобы начать общение</p>
       </div>
     </main>
-  </div>
+  }
 
-  <!-- Настройки внизу -->
 </div>

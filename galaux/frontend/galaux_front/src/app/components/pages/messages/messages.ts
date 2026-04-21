@@ -1,17 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { InputTextModule } from 'primeng/inputtext';
-import { ButtonModule } from 'primeng/button';
-import { AvatarModule } from 'primeng/avatar';
-import { BadgeModule } from 'primeng/badge';
-import { PanelModule } from 'primeng/panel';
-import {TabsModule} from 'primeng/tabs';
-import { ToggleSwitchModule } from 'primeng/toggleswitch';
-import {Navbuttons} from '../../shared/navbuttons/navbuttons';
-import { MenuItem } from 'primeng/api';
 
-// src/app/models/messenger.models.ts
 export interface Message {
   id: number;
   text: string;
@@ -30,69 +20,24 @@ export interface Conversation {
   isOnline?: boolean;
 }
 
-export interface User {
-  id: number;
-  name: string;
-  avatar?: string;
-}
-
 @Component({
   selector: 'app-messages',
   standalone: true,
-  imports: [
-    CommonModule,
-    FormsModule,
-    InputTextModule,
-    ButtonModule,
-    AvatarModule,
-    BadgeModule,
-    PanelModule,
-    TabsModule,
-    ToggleSwitchModule,
-    Navbuttons
-  ],
+  imports: [CommonModule, FormsModule],
   templateUrl: './messages.html',
   styleUrl: './messages.css',
 })
-export class Messages implements OnInit{
+export class Messages implements OnInit {
   conversations: Conversation[] = [];
   messages: Message[] = [];
   selectedConversation: Conversation | null = null;
   newMessageText: string = '';
 
-  // Настройки
-  darkTheme: boolean = false;
-  soundEnabled: boolean = true;
-  keyboardEnabled: boolean = true;
-
-  // Меню навигации
-  navItems: MenuItem[] = [];
-
-  // Вкладки
-  tabs: MenuItem[] = [
-    { label: 'Сервера', icon: 'pi pi-server' },
-    { label: 'Новости', icon: 'pi pi-newspaper' },
-    { label: 'Сообщения', icon: 'pi pi-comments' },
-    { label: 'Друзья', icon: 'pi pi-users' },
-    { label: 'Настройки', icon: 'pi pi-cog' }
-  ];
-
   ngOnInit() {
     this.loadConversations();
-    this.initNavItems();
-  }
-
-  initNavItems() {
-    this.navItems = [
-      { label: 'Главная', icon: 'pi pi-home' },
-      { label: 'Правила', icon: 'pi pi-book' },
-      { label: 'Помощь', icon: 'pi pi-question-circle' },
-      { label: 'Лаунчер', icon: 'pi pi-download' }
-    ];
   }
 
   loadConversations() {
-    // Пример данных
     this.conversations = [
       {
         id: 1,
@@ -135,7 +80,6 @@ export class Messages implements OnInit{
       }
     ];
 
-    // Загружаем сообщения для первого диалога
     this.selectConversation(this.conversations[0]);
   }
 
@@ -144,8 +88,7 @@ export class Messages implements OnInit{
     this.loadMessages(conversation.id);
   }
 
-  loadMessages(conversationId: number) {
-    // Пример сообщений
+  loadMessages(_conversationId: number) {
     this.messages = [
       {
         id: 1,
@@ -180,24 +123,21 @@ export class Messages implements OnInit{
 
   sendMessage() {
     if (this.newMessageText.trim()) {
-      const newMessage: Message = {
+      this.messages.push({
         id: this.messages.length + 1,
         text: this.newMessageText,
         senderId: 0,
         timestamp: new Date(),
         isOwn: true
-      };
-
-      this.messages.push(newMessage);
+      });
       this.newMessageText = '';
 
-      // Прокрутка вниз
       setTimeout(() => {
         const chatContainer = document.querySelector('.chat-messages');
         if (chatContainer) {
           chatContainer.scrollTop = chatContainer.scrollHeight;
         }
-      }, 100);
+      }, 50);
     }
   }
 
