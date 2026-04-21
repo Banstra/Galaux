@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { InputTextModule } from 'primeng/inputtext';
 import { ButtonModule } from 'primeng/button';
 import { RatingModule } from 'primeng/rating';
+import {Navbuttons} from '../../shared/navbuttons/navbuttons';
 
 export interface Server {
   id: number;
@@ -18,7 +19,8 @@ export interface Server {
   standalone: true,
   imports: [CommonModule,
     InputTextModule,
-    ButtonModule],
+    ButtonModule,
+    Navbuttons],
   templateUrl: './servers.html',
   styleUrl: './servers.css',
 })
