@@ -4,7 +4,6 @@ import { AuthComponent } from './components/pages/auth/auth.component';
 import {Layout} from './components/shared/layout/layout/layout';
 import {Register} from './components/pages/register/register';
 
-import { authGuard } from './guards/auth.guard';
 import {Main} from './components/pages/main/main';
 import {Friends} from './components/pages/friends/friends';
 import {Messages} from './components/pages/messages/messages';
@@ -14,6 +13,11 @@ import {Servers} from './components/pages/servers/servers';
 import {Options} from './components/pages/options/options';
 
 export const routes: Routes = [
+  {
+    path: '',
+    redirectTo: 'landing',
+    pathMatch: 'full'
+  },
   {
     path: '',
     component: Layout,

@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
-import {Navbuttons} from '../../shared/navbuttons/navbuttons';
+
 @Component({
   selector: 'app-main',
-  imports: [Navbuttons],
+  imports: [],
   templateUrl: './main.html',
   styleUrl: './main.css',
 })

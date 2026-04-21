@@ -1,3 +1,10 @@
 <app-navbar></app-navbar>
+
+@if (showSubheader) {
+  <div class="subheader">
+    <app-navbuttons></app-navbuttons>
+  </div>
+}
+
 <router-outlet></router-outlet>
 <app-footer></app-footer>

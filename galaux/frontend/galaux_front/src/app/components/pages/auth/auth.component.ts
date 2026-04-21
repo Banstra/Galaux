@@ -1,6 +1,7 @@
 import {Component, inject, signal} from '@angular/core';
+import { lastValueFrom } from 'rxjs';
 import { FormsModule } from '@angular/forms';
-import {ActivatedRoute, Router, RouterLink} from '@angular/router';
+import {Router, RouterLink} from '@angular/router';
 import {Button, ButtonDirective, ButtonIcon} from 'primeng/button';
 import { AuthService, LoginRequest } from '../../../services/auth';
 import {ProgressBar} from 'primeng/progressbar';
@@ -30,6 +31,10 @@ export class AuthComponent {
     this.showPassword.update(v => !v);
   }
 
+  fakeLogin() {
+    this.authService.isAuth.set(true);
+  }
+
   async onSubmit() {
     // Валидация
     if (!this.login.trim()) {
@@ -50,10 +55,10 @@ export class AuthComponent {
     };
 
     try {
-      await this.authService.login(credentials).toPromise();
+      await lastValueFrom(this.authService.login(credentials));
 
       // Успешный вход - перенаправляем
-      this.router.navigate(['/dashboard']); // или куда нужно
+      this.router.navigate(['/servers']);
 
     } catch (err: any) {
       this.error.set(err.message);

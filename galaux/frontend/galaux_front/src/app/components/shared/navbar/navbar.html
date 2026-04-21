@@ -1,36 +1,44 @@
-<p-toolbar styleClass="navbar-custom">
-  <ng-template #start>
-    <div class="logo-section">
-        <img src="assets/images/logo.png" width="100" alt="logo" routerLink="/landing">
+<header class="navbar">
+  <div class="navbar-main">
+    <div class="navbar-start">
+      <img src="assets/images/logo.png" width="90" alt="logo" routerLink="/landing" class="logo-img">
     </div>
-  </ng-template>
 
-  <ng-template #center>
-    <nav class="nav-links">
-      <a pRipple class="nav-item" routerLink="/">
+    <nav class="navbar-center">
+      <a routerLink="/landing" routerLinkActive="active" class="nav-item">
         <i class="pi pi-home"></i>
         <span>Главная</span>
       </a>
-      <a pRipple class="nav-item" routerLink="/rules">
+      <a routerLink="/rules" routerLinkActive="active" class="nav-item">
         <i class="pi pi-book"></i>
         <span>Правила</span>
       </a>
-      <a pRipple class="nav-item" routerLink="/help">
+      <a routerLink="/help" routerLinkActive="active" class="nav-item">
         <i class="pi pi-comment"></i>
         <span>Помощь</span>
       </a>
-      <a class="nav-item" routerLink="/launcher">
+      <a routerLink="/launcher" routerLinkActive="active" class="nav-item">
         <i class="pi pi-download"></i>
         <span>Лаунчер</span>
       </a>
     </nav>
-  </ng-template>
 
-  <ng-template #end>
-    <p-button
-      label="Войти"
-      styleClass="bg-blue-500 border-round-lg text-white hover:bg-blue-900"
-      routerLink="/auth">
-    </p-button>
-  </ng-template>
-</p-toolbar>
+    <div class="navbar-end">
+      @if (auth.isAuth()) {
+        @if (onProfile) {
+          <button type="button" class="profile-btn" (click)="logout()">Выйти</button>
+        } @else {
+          <a routerLink="/profile" class="profile-btn">Профиль</a>
+        }
+      } @else {
+        <a routerLink="/auth" class="profile-btn">Войти</a>
+      }
+    </div>
+  </div>
+
+  @if (auth.isAuth()) {
+    <div class="sos-bar">
+      <button type="button" class="sos-btn" aria-label="Вызов помощи SOS">SOS</button>
+    </div>
+  }
+</header>

@@ -1,11 +1,11 @@
 import {Component, inject, signal} from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
+import { lastValueFrom } from 'rxjs';
 import {Button, ButtonDirective} from 'primeng/button';
-import { InputTextModule } from 'primeng/inputtext';
-import {Checkbox, CheckboxModule} from 'primeng/checkbox';
-import { MessageModule } from 'primeng/message';
-import {ProgressBar, ProgressBarModule} from 'primeng/progressbar';
+import { InputText } from 'primeng/inputtext';
+import {Checkbox} from 'primeng/checkbox';
+import {ProgressBar} from 'primeng/progressbar';
 import { AuthService, RegisterRequest } from '../../../services/auth';
 import {Ripple} from 'primeng/ripple';
 
@@ -17,7 +17,9 @@ import {Ripple} from 'primeng/ripple';
     FormsModule,
     ProgressBar,
     Checkbox,
-    ButtonDirective
+    ButtonDirective,
+    RouterLink,
+    InputText,
   ],
   templateUrl: './register.html',
   styleUrl: './register.css',
@@ -96,7 +98,7 @@ export class Register {
     };
 
     try {
-      await this.authService.register(registerData).toPromise();
+      await lastValueFrom(this.authService.register(registerData));
 
       this.success.set(true);
 

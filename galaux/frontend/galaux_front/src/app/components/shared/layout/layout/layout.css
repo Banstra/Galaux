@@ -1,0 +1,10 @@
+:host {
+  display: block;
+}
+
+.subheader {
+  display: flex;
+  justify-content: center;
+  border-bottom: 1px solid #e5e7eb;
+  background: #fff;
+}

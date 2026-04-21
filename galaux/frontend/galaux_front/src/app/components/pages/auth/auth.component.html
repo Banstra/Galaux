@@ -83,7 +83,7 @@
         [disabled]="isLoading()"
         [loading]="isLoading()">
       </button>-->
-      <a href="/main" class="btn btn-primary" tabindex="-1" role="button" aria-disabled="true">Войти</a>
+      <a routerLink="/main" class="btn btn-primary" tabindex="-1" role="button" (click)="fakeLogin()">Войти</a>
     </form>
 
     <!-- Разделитель -->

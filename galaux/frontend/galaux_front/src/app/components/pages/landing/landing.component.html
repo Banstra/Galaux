@@ -90,6 +90,27 @@
     <h2>Найти сервера</h2>
     <p>Найди подходящий для себя мир!</p>
 
+    <div class="servers-grid">
+      <div class="server-card" *ngFor="let server of visibleServers">
+        <img class="server-card__img" [src]="server.imageUrl" [alt]="server.name" [title]="server.name" />
+        <div class="server-card__body">
+          <h3 class="server-card__name">{{ server.name }}</h3>
+          <p class="server-card__desc">{{ server.description }}</p>
+          <div class="server-card__tags">
+            <span class="server-card__tag" *ngFor="let tag of server.tags">{{ tag }}</span>
+          </div>
+          <div class="server-card__online">
+            <span class="server-card__online-dot"></span>
+            {{ server.online }}
+          </div>
+          <div class="server-card__stars">
+            <span *ngFor="let s of starsArray(server.rating)">⭐</span>
+          </div>
+          <button type="button" class="server-card__play" (click)="onPlayClick(server)">▶ ИГРАТЬ</button>
+        </div>
+      </div>
+    </div>
+
     <div class="show-more" *ngIf="visibleCount < servers.length">
       <button pButton label="Показать еще" class="p-button-outlined" (click)="showMore()"></button>
     </div>

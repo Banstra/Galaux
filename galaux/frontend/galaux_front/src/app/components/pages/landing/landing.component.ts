@@ -11,6 +11,10 @@ interface ServerCard {
   description: string;
   tags: string[];
   online: string;
+  imageUrl: string;
+  rating: number;
+  maxOnline: number;
+  currentOnline: number;
 }
 
 interface SafetyCard {
@@ -47,15 +51,23 @@ export class LandingComponent {
     'Выживание',
   ];
 
-  servers: ServerCard[] = Array(12).fill({
+  servers: ServerCard[] = Array.from({ length: 15 }, (_, i) => ({
     name: 'название',
     description: 'Привет, это тестовый текст',
-    tags: ['Мини-игры', 'Инклюзивный'],
-    online: '124/200 человек онлайн',
-  });
+    tags: ['Мини-игры 🎮', 'Инклюзивный 🧩'],
+    online: `${100 + i * 7}/${200 + i * 10} человек онлайн`,
+    imageUrl: 'img/house.png',
+    rating: 4 + (i % 2),
+    currentOnline: 100 + i * 7,
+    maxOnline: 200 + i * 10,
+  }));
 
-  visibleCount = 8;
-  step = 4;
+  visibleCount = 12;
+  step = 6;
+
+  starsArray(n: number): number[] {
+    return Array(n).fill(0);
+  }
 
   // Блок безопасности с картинками из папки img (предполагаем, что папка img в assets)
   safetySections: SafetySection[] = [

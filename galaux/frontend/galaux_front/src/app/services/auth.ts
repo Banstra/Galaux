@@ -1,5 +1,5 @@
 // src/app/services/auth.service.ts
-import { inject, Injectable } from '@angular/core';
+import { inject, Injectable, signal } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { filter, take, map, BehaviorSubject, catchError, throwError, tap, Observable, of } from 'rxjs';
@@ -44,9 +44,19 @@ export class AuthService {
   private router = inject(Router);
   private readonly API_URL = 'https://www.galauxminecraftapi.ru/api';
 
-  // Состояние пользователя
+  // Реактивный флаг авторизации — используется напрямую в шаблонах
+  isAuth = signal<boolean>(!!this.getAccessToken());
+
   private currentUserSubject = new BehaviorSubject<UserData | null>(null);
   public currentUser$ = this.currentUserSubject.asObservable();
+  public isLoggedIn$ = this.currentUser$.pipe(map(user => !!user));
+
+  constructor() {
+    const userData = this.getUserData();
+    if (userData && this.getAccessToken()) {
+      this.currentUserSubject.next(userData);
+    }
+  }
 
   // Флаг обновления токена
   private isRefreshing = false;
@@ -94,7 +104,7 @@ export class AuthService {
       tap(response => {
         this.updateTokens(response);
       }),
-      catchError((error: HttpErrorResponse) => {
+      catchError((_error: HttpErrorResponse) => {
         this.logout();
         return throwError(() => new Error('Session expired'));
       })
@@ -102,7 +112,6 @@ export class AuthService {
   }
 
   logout() {
-    // Очищаем всё
     localStorage.removeItem('access_token');
     localStorage.removeItem('refresh_token');
     localStorage.removeItem('user_data');
@@ -111,6 +120,7 @@ export class AuthService {
     sessionStorage.removeItem('user_data');
 
     this.currentUserSubject.next(null);
+    this.isAuth.set(false);
     this.router.navigate(['/auth']);
   }
 
@@ -126,12 +136,10 @@ export class AuthService {
   private handleAuthSuccess(response: LoginResponse | RegisterResponse) {
     const { access_token, refresh_token, user } = response;
 
-    // Сохраняем токены
     this.saveTokens(access_token, refresh_token);
-
-    // Сохраняем данные пользователя
     this.currentUserSubject.next(user);
     this.saveUserData(user);
+    this.isAuth.set(true);
   }
 
   private saveTokens(accessToken: string, refreshToken: string) {
@@ -160,7 +168,14 @@ export class AuthService {
 
   getUserData(): UserData | null {
     const data = localStorage.getItem('user_data') || sessionStorage.getItem('user_data');
-    return data ? JSON.parse(data) : null;
+    if (!data || data === 'undefined' || data === 'null') return null;
+    try {
+      return JSON.parse(data);
+    } catch {
+      localStorage.removeItem('user_data');
+      sessionStorage.removeItem('user_data');
+      return null;
+    }
   }
 
   private handleError(error: HttpErrorResponse): string {
@@ -218,7 +233,7 @@ export class AuthService {
         this.refreshTokenSubject.next('success');
       }),
       map(() => true), // <--- ВОТ ЭТО ИСПРАВЛЯЕТ ОШИБКУ ТИПОВ
-      catchError((error) => {
+      catchError((_error) => {
         this.isRefreshing = false;
         this.logout();
         this.refreshTokenSubject.next(null);
