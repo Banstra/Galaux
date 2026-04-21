@@ -5,6 +5,13 @@ import {Layout} from './components/shared/layout/layout/layout';
 import {Register} from './components/pages/register/register';
 
 import { authGuard } from './guards/auth.guard';
+import {Main} from './components/pages/main/main';
+import {Friends} from './components/pages/friends/friends';
+import {Messages} from './components/pages/messages/messages';
+import {Profile} from './components/pages/profile/profile';
+import {ProfileOther} from './components/pages/profile-other/profile-other';
+import {Servers} from './components/pages/servers/servers';
+import {Options} from './components/pages/options/options';
 
 export const routes: Routes = [
   {
@@ -13,7 +20,29 @@ export const routes: Routes = [
     children: [{
       path: 'landing',
       component: LandingComponent
-    }]
+    },{
+      path: 'main',
+      component: Main
+    },{
+      path: 'friends',
+      component: Friends
+    },{
+      path: 'messages',
+      component: Messages
+    },{
+      path: 'profile',
+      component: Profile
+    },{
+      path: 'profile-other',
+      component: ProfileOther
+    },{
+      path: 'servers',
+      component: Servers
+    },{
+      path: 'options',
+      component: Options
+    },
+    ]
   },
   {
     path: 'auth',
